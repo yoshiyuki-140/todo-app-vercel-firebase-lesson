@@ -1,7 +1,9 @@
-import { authGuard } from "@/utils/authGuard";
+"use client";
+
+import { useAuthGuard } from "@/utils/authGuard";
 
 export default function Home() {
-  authGuard();
+  useAuthGuard();
 
   return (
     <div>

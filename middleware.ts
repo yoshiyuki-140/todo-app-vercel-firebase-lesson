@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { verifyIdToken } from "./firebase-admin";
 
 export async function middleware(req: NextRequest) {
   // Cookieから認証トークンを取得
