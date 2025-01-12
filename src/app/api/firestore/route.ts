@@ -7,7 +7,6 @@ export async function GET() {
     const collectionName = "task"; // Firestoreコレクション名
     const snapshot = await db.collection(collectionName).get();
     const data = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-    console.log(data);
 
     return NextResponse.json({ success: true, data });
   } catch (error) {

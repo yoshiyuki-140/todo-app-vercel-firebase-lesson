@@ -25,7 +25,6 @@ export default function Home() {
         method: "GET",
       });
       const data = await response.json();
-      console.log(data);
       if (data.success) {
         setTasks(data.data);
         console.log(data.data);
