@@ -1,12 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/firebaseAdmin";
 
-// APIルートのGET/POSTハンドラ
+// APIルートのGET/POST/DELETEハンドラ
 export async function GET() {
   try {
     const collectionName = "task"; // Firestoreコレクション名
     const snapshot = await db.collection(collectionName).get();
     const data = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+    console.log(data);
 
     return NextResponse.json({ success: true, data });
   } catch (error) {
@@ -38,6 +39,41 @@ export async function POST(req: NextRequest) {
     console.error("Error saving data:", error);
     return NextResponse.json(
       { success: false, error: "Failed to save data" },
+      { status: 500 }
+    );
+  }
+}
+
+export async function DELETE(req: NextRequest) {
+  try {
+    const collectionName = "task"; // Firestoreコレクション名
+    const { id } = await req.json();
+
+    if (!id) {
+      return NextResponse.json(
+        { success: false, error: "Task ID is required" },
+        { status: 400 }
+      );
+    }
+
+    // ドキュメントの存在確認
+    const docRef = db.collection(collectionName).doc(id);
+    const doc = await docRef.get();
+    if (!doc.exists) {
+      return NextResponse.json(
+        { success: false, error: "Task not found" },
+        { status: 404 }
+      );
+    }
+
+    // ドキュメントを削除
+    await docRef.delete();
+
+    return NextResponse.json({ success: true }, { status: 200 });
+  } catch (error) {
+    console.error("Error deleting data:", error);
+    return NextResponse.json(
+      { success: false, error: "Failed to delete data" },
       { status: 500 }
     );
   }
