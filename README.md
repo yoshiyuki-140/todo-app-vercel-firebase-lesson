@@ -1,3 +1,18 @@
+## 概要
+これは技術検証を行うために作成したサンプルアプリケーションです。
+このリポジトリでは、Firebaseとのデータベース提携や、認証をどの様に実装すればよいのかという知見を獲得することができました。
+
+## 構成
+
+- フレームワーク：Next.js
+- 言語：TypeScript
+- ホスティングSaaS：Vercel
+- データベース：Firebase Firestore
+- 認証基盤：Firebase Authentication
+
+
+---
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
@@ -6,17 +21,9 @@ First, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
